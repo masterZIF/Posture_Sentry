@@ -17,8 +17,8 @@ class VideoCamera(object):
     }
     
     # 姿势分类阈值
-    ANGLE_SLOUCH_THRESH = 147    # 低于此角度视为“弯腰”
-    ANGLE_RECOVERY_THRESH = 153  # 高于此角度视为恢复“正常”
+    ANGLE_SLOUCH_THRESH = 149    # 低于此角度视为“弯腰”
+    ANGLE_RECOVERY_THRESH = 151  # 高于此角度视为恢复“正常”
 
     def __init__(self):
         # 初始化视频捕获并设置标准分辨率

@@ -1,0 +1,30 @@
+# === Python 编译文件 (必须忽略) ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+# === 虚拟环境 (截图里的 venv 文件夹) ===
+# 避免把几百兆的库文件传到仓库里
+venv/
+.venv/
+env/
+
+# === Mac 系统文件 ===
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# === IDE 配置 (VS Code) ===
+# 个人开发习惯的配置文件通常不建议上传
+.vscode/
+*.code-workspace
+
+# === 环境变量/密钥 ===
+# 如果后续增加了密钥配置，防止泄露
+.env
+.flaskenv
+
+# === 其它可能产生的临时文件 ===
+instance/
+.pytest_cache/
+venv/

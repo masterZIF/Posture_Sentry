@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posture Sentry - 启动中心</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        /* * 全局变量与重置 
+         */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-color: #2d3748;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --hover-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-gradient);
+            font-family: 'Varela Round', 'Noto Sans SC', sans-serif;
+            color: var(--text-color);
+        }
+
+        /* * 主标题区域 
+         */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .app-logo {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -1px;
+            color: #1a202c;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin-top: 15px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .instruction {
+            margin-top: 35px;
+            font-size: 1.2rem;
+            color: #2d3748;
+            background: rgba(255,255,255,0.6);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            font-weight: bold;
+        }
+
+        /* * 卡片组件 
+         */
+        .card-container {
+            display: flex;
+            gap: 50px;
+            padding: 20px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 320px;
+            height: 480px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            z-index: 10;
+        }
+
+        .card-content {
+            z-index: 2;
+            text-align: center;
+        }
+
+        .card h2 { margin: 15px 0 5px 0; font-size: 1.8rem; }
+        .card p { margin: 0; opacity: 0.8; font-size: 1rem; }
+        
+        .btn-text {
+            margin-top: 30px;
+            padding: 12px 28px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .btn-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 模式: 治愈风格 (Cute Style) */
+        .card-cute {
+            background: #ffffff;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .card-cute:hover {
+            transform: translateY(-15px) scale(1.03); 
+            border-color: #d66d75; 
+            /* 鼠标悬停时增强粉色发光效果 */
+            box-shadow: 0 20px 50px rgba(214, 109, 117, 0.3),
+                        0 0 20px rgba(255, 182, 193, 0.6);
+        }
+
+        .card-cute .emoji { font-size: 100px; margin-bottom: 20px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); }
+        .card-cute h2 { color: #d66d75; }
+        .card-cute .btn-text { background: #ffe4e6; color: #d66d75; }
+        
+        /* 装饰性色块 */
+        .card-cute::before {
+            content: ''; position: absolute; top: -50px; right: -50px;
+            width: 200px; height: 200px; background: #ffe4e6; border-radius: 50%; opacity: 0.5;
+        }
+        .card-cute::after {
+            content: ''; position: absolute; bottom: -50px; left: -50px;
+            width: 150px; height: 150px; background: #d1fae5; border-radius: 50%; opacity: 0.5;
+        }
+
+        /* 模式: 黑客风格 (Hacker Style) */
+        .card-hacker {
+            background: #0d0d0d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            color: #00ff41;
+            border: 1px solid #333;
+        }
+        .card-hacker:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
+            border-color: #00ff41;
+        }
+        .card-hacker .icon { 
+            font-size: 80px; margin-bottom: 20px; font-family: 'Courier New', monospace; 
+            border: 2px solid #00ff41; padding: 15px; border-radius: 10px;
+            text-shadow: 0 0 10px #00ff41; box-shadow: 0 0 10px rgba(0,255,65,0.2);
+        }
+        .card-hacker h2 { font-family: 'Courier New', monospace; text-shadow: 0 0 5px #00ff41; }
+        .card-hacker .btn-text { background: rgba(0, 255, 65, 0.1); color: #00ff41; border: 1px solid #00ff41; }
+        
+        .scanline {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 65, 0.05) 3px);
+            pointer-events: none;
+        }
+
+        /* * 页脚与动画 
+         */
+        .footer {
+            margin-top: 60px;
+            font-size: 1rem; 
+            color: #718096; 
+            font-weight: 500;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .card-container { flex-direction: column; gap: 20px; }
+            .card { width: 280px; height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="app-logo">🌱</div>
+        <h1>Posture Sentry</h1>
+        <div class="subtitle">智能视觉坐姿守护系统</div>
+        <div class="instruction">请选择您喜欢的工作界面风格 👇</div>
+    </div>
+
+    <div class="card-container">
+        
+        <a href="/mode/cute" class="card card-cute">
+            <div class="card-content">
+                <div class="emoji">🥰</div>
+                <h2>治愈伴侣</h2>
+                <p>Modern / Cozy Style</p>
+                <div class="btn-text">进入治愈模式 →</div>
+            </div>
+        </a>
+
+        <a href="/mode/hacker" class="card card-hacker">
+            <div class="scanline"></div>
+            <div class="card-content">
+                <div class="icon">&gt;_</div>
+                <h2>黑客终端</h2>
+                <p>Hacker / Matrix Style</p>
+                <div class="btn-text">INITIALIZE SYSTEM →</div>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="footer">
+        Based on MediaPipe & Flask &nbsp;|&nbsp; Designed for Healthy Coding
+    </div>
+
+</body>
+</html>

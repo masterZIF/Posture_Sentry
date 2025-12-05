@@ -1,0 +1,165 @@
+/*
+ * Posture Sentry - 黑客主题样式
+ * 高对比度、深色模式界面，采用等宽字体排版。
+ */
+
+:root {
+    --primary-color: #00ff41;
+    --alert-color: #ff3333;
+    --bg-color: #111;
+    --panel-bg: rgba(20, 20, 20, 0.8);
+    --border-color: #333;
+}
+
+/* * 全局布局 
+ */
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    font-family: 'Consolas', 'Monaco', monospace;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-interface {
+    width: 95%;
+    height: 90vh;
+    max-width: 1400px;
+    background: #000;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+.sys-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+/* * 仪表盘网格系统
+ */
+.dashboard-grid {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* 左侧面板：监控流 */
+.monitor-panel {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-wrapper {
+    position: relative;
+    border: 1px solid #333;
+    background: #000;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.video-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: none;
+}
+
+/* 右侧面板：数据指标 */
+.data-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 250px;
+}
+
+/* * UI 组件 (卡片、指标、日志)
+ */
+.data-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+}
+
+.card-label { 
+    font-size: 0.8rem; 
+    color: #888; 
+    margin-bottom: 8px; 
+    border-bottom: 1px solid #333; 
+}
+
+.status-display { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    text-align: center; 
+    color: #fff; 
+}
+
+.metric-row { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.metric-value { 
+    font-size: 1.2rem; 
+    min-width: 50px; 
+}
+
+.progress-bar-bg { 
+    flex: 1; 
+    height: 8px; 
+    background: #333; 
+}
+
+.progress-bar-fill { 
+    height: 100%; 
+    background: var(--primary-color); 
+    transition: width 0.3s; 
+}
+
+.log-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    font-size: 0.8rem; 
+    color: #aaa; 
+    overflow-y: auto; 
+    max-height: 200px; 
+}
+
+.log-list li { 
+    padding: 4px 0; 
+    border-bottom: 1px solid #222; 
+}
+
+/* * 视觉装饰
+ */
+.rec-tag { 
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    color: red; 
+    font-weight: bold; 
+    animation: blink 1s infinite; /* 闪烁动画 */
+}
+
+@keyframes blink { 
+    50% { opacity: 0; } 
+}

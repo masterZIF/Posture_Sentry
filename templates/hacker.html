@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTURE_SENTRY // DASHBOARD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hacker.css') }}">
+</head>
+<body>
+    <div class="scanline"></div>
+    
+    <div class="main-interface">
+        <header class="sys-header">
+            <div class="brand">
+                <span class="icon">◉</span> POSTURE_SENTRY <span class="version">v2.0</span>
+            </div>
+            <div class="sys-info">
+                <span>CPU: <span class="random-change">12%</span></span>
+                <span>MEM: 450MB</span>
+                <span class="status-dot"></span> SYSTEM ONLINE
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <section class="monitor-panel">
+                <div class="video-wrapper">
+                    <img src="{{ url_for('video_feed') }}" alt="Live Feed">
+                    <div class="reticle-corner top-left"></div>
+                    <div class="reticle-corner top-right"></div>
+                    <div class="reticle-corner bottom-left"></div>
+                    <div class="reticle-corner bottom-right"></div>
+                    <div class="rec-tag">● REC</div>
+                </div>
+                <div class="camera-info">
+                    <p>> CAMERA_ID: /dev/video0</p>
+                    <p>> RES: 640x480 (OPTIMIZED)</p>
+                </div>
+            </section>
+
+            <section class="data-panel">
+                
+                <div class="data-card status-card">
+                    <div class="card-label">CURRENT STATUS // 当前状态</div>
+                    <div class="status-display" id="posture-indicator">ANALYZING...</div>
+                </div>
+
+                <div class="data-card metrics-card">
+                    <div class="card-label">NECK INCLINATION // 颈部倾角</div>
+                    <div class="metric-row">
+                        <span class="metric-value" id="angle-value">0°</span>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="angle-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <p class="helper-text">Target: > 150°</p>
+                </div>
+
+                <div class="data-card log-card">
+                    <div class="card-label">SYSTEM LOGS // 系统日志</div>
+                    <ul class="log-list">
+                        <li>[SYSTEM] Dashboard initialized...</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/hacker.js') }}"></script>
+</body>
+</html>

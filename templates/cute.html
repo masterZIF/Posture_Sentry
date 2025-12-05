@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posture Pal // 坐姿伴侣</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cute.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <span class="logo">🌱</span> 
+            <span class="app-name">Posture Pal</span>
+        </header>
+
+        <div class="card video-card">
+            <div class="video-wrapper">
+                <img src="{{ url_for('video_feed') }}" alt="Live Feed">
+            </div>
+            <div class="camera-tag">📷 实时守护中</div>
+        </div>
+
+        <div class="card status-card" id="status-card-bg">
+            <div class="status-content">
+                <div class="emoji-display" id="emoji-face">😊</div>
+                <h2 id="status-text">坐姿很棒！</h2>
+                <p id="sub-text">保持这个状态，继续加油哦</p>
+                
+                <div class="angle-capsule">
+                    <span class="label">颈部角度</span>
+                    <span class="value" id="angle-value">--°</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/cute.js') }}"></script>
+</body>
+</html>

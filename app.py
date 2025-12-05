@@ -57,7 +57,9 @@ def status_feed():
 if __name__ == '__main__':
     def open_browser():
         webbrowser.open_new('http://127.0.0.1:5001/')
-    # 启动定时器，在 1 秒后打开浏览器
-    Timer(1, open_browser).start()
+
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        Timer(1, open_browser).start()
+
     # 运行 Flask 应用
     app.run(host='0.0.0.0', port=5001, debug=True, threaded=True)
